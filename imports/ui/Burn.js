@@ -5,15 +5,16 @@ import CanvasGrid from './CanvasGrid';
 
 const Burn = props => (
   <Flex flexDirection="column" width={1} p={3}>
-    <CanvasGrid />
     <Button
       onClick={() =>
         Canvases.insert({
           createdAt: Date.now(),
+          modifiedAt: Date.now(),
         })
       }>
       New Canvas
     </Button>
+    <CanvasGrid />
   </Flex>
 );
 

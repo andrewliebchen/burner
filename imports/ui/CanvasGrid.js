@@ -1,19 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {createContainer} from 'react-meteor-data';
 import {Canvases} from '../api/canvases';
+import {createContainer} from 'react-meteor-data';
+import {Flex, Box, Text, Card} from 'rebass';
 import {Link} from 'react-router-dom';
-import {Flex, Box, Text} from 'rebass';
+import {Trash} from 'react-feather';
+import PropTypes from 'prop-types';
+import React from 'react';
+import TimeAgo from 'react-timeago';
 
 const CanvasGrid = props => (
-  <Flex>
+  <Flex flexDirection="column">
     {props.canvases.length > 0 ? (
       props.canvases.map(canvas => (
-        <Link key={canvas._id} to={`canvases/${canvas._id}`}>
-          <Box>
+        <Card key={canvas._id} width={1} border={1} p={3} mt={3}>
+          <Text>
+            <TimeAgo date={canvas.modifiedAt} />
+          </Text>
+          <Link to={`canvases/${canvas._id}`}>
             <Text>{canvas._id}</Text>
-          </Box>
-        </Link>
+          </Link>
+          <Trash
+            onClick={() =>
+              window.confirm('Are you sure you want to delete this canvas?') &&
+              Canvases.remove(canvas._id)
+            }
+          />
+        </Card>
       ))
     ) : (
       <Text>No Canvases</Text>
@@ -27,6 +38,6 @@ CanvasGrid.propTypes = {
 
 export default createContainer(() => {
   return {
-    canvases: Canvases.find({}).fetch(),
+    canvases: Canvases.find({}, {sort: {modifiedAt: -1}}).fetch(),
   };
 }, CanvasGrid);
