@@ -2,6 +2,7 @@ import {Flex, Button} from 'rebass';
 import React, {Component} from 'react';
 import CanvasList from './CanvasList';
 import NewCanvas from './NewCanvas';
+import Block from './Block';
 
 class Burn extends Component {
   constructor(props) {
@@ -20,7 +21,9 @@ class Burn extends Component {
     return (
       <Flex flexDirection="column" width={1} p={3}>
         {this.state.showNewCanvas ? (
-          <NewCanvas onSubmit={this._handleNewCanvasToggle} />
+          <Block>
+            <NewCanvas onSubmit={this._handleNewCanvasToggle} />
+          </Block>
         ) : (
           <Button onClick={this._handleNewCanvasToggle}>New Canvas</Button>
         )}

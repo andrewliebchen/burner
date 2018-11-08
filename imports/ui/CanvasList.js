@@ -6,12 +6,13 @@ import {Trash} from 'react-feather';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TimeAgo from 'react-timeago';
+import Block from './Block';
 
 const CanvasList = props => (
   <Flex flexDirection="column">
     {props.canvases.length > 0 ? (
       props.canvases.map(canvas => (
-        <Card key={canvas._id} width={1} border={1} p={3} mt={3}>
+        <Block key={canvas._id}>
           <Text>
             <TimeAgo date={canvas.modifiedAt} />
           </Text>
@@ -24,7 +25,7 @@ const CanvasList = props => (
               Canvases.remove(canvas._id)
             }
           />
-        </Card>
+        </Block>
       ))
     ) : (
       <Text>No Canvases</Text>

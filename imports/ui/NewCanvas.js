@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Box, Flex, Text, Button} from 'rebass';
 import {Canvases} from '../api/canvases';
 import PropTypes from 'prop-types';
+import Input from './Input';
 
 class NewCanvas extends Component {
   constructor(props) {
@@ -14,14 +15,16 @@ class NewCanvas extends Component {
   render() {
     return (
       <Flex flexDirection="column">
-        <Text>New Canvas</Text>
-        <input
-          type="text"
-          autoFocus
-          onChange={event =>
-            this.setState({problemStatement: event.target.value})
-          }
-        />
+        <Text mb={2}>New Canvas</Text>
+        <Box mb={2}>
+          <Input
+            label="Problem statemen4t"
+            autoFocus
+            onChange={event =>
+              this.setState({problemStatement: event.target.value})
+            }
+          />
+        </Box>
         <Button
           onClick={() => {
             this.props.onSubmit();
