@@ -9,20 +9,20 @@ class Burn extends Component {
     this.state = {
       showNewCanvas: false,
     };
+    this._handleNewCanvasToggle = this._handleNewCanvasToggle.bind(this);
+  }
+
+  _handleNewCanvasToggle() {
+    this.setState({showNewCanvas: !this.state.showNewCanvas});
   }
 
   render() {
     return (
       <Flex flexDirection="column" width={1} p={3}>
         {this.state.showNewCanvas ? (
-          <NewCanvas />
+          <NewCanvas onSubmit={this._handleNewCanvasToggle} />
         ) : (
-          <Button
-            onClick={() =>
-              this.setState({showNewCanvas: !this.state.showNewCanvas})
-            }>
-            New Canvas
-          </Button>
+          <Button onClick={this._handleNewCanvasToggle}>New Canvas</Button>
         )}
 
         <CanvasList />
