@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import TimeAgo from 'react-timeago';
 
-const CanvasGrid = props => (
+const CanvasList = props => (
   <Flex flexDirection="column">
     {props.canvases.length > 0 ? (
       props.canvases.map(canvas => (
@@ -32,7 +32,7 @@ const CanvasGrid = props => (
   </Flex>
 );
 
-CanvasGrid.propTypes = {
+CanvasList.propTypes = {
   canvases: PropTypes.array,
 };
 
@@ -40,4 +40,4 @@ export default createContainer(() => {
   return {
     canvases: Canvases.find({}, {sort: {modifiedAt: -1}}).fetch(),
   };
-}, CanvasGrid);
+}, CanvasList);

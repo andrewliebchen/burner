@@ -1,7 +1,7 @@
 import {Canvases} from '../api/canvases';
 import {Flex, Button} from 'rebass';
 import React from 'react';
-import CanvasGrid from './CanvasGrid';
+import CanvasList from './CanvasList';
 
 const Burn = props => (
   <Flex flexDirection="column" width={1} p={3}>
@@ -14,7 +14,7 @@ const Burn = props => (
       }>
       New Canvas
     </Button>
-    <CanvasGrid />
+    <CanvasList />
   </Flex>
 );
 
