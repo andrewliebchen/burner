@@ -16,7 +16,7 @@ const CanvasList = props => (
             <TimeAgo date={canvas.modifiedAt} />
           </Text>
           <Link to={`canvases/${canvas._id}`}>
-            <Text>{canvas._id}</Text>
+            <Text>{canvas.problemStatement}</Text>
           </Link>
           <Trash
             onClick={() =>
