@@ -4,7 +4,7 @@ import {ChevronRight} from 'react-feather';
 import {NavLink} from 'react-router-dom';
 
 const Header = props => (
-  <Flex width={1} p={2} alignItems="center">
+  <Flex width={1} p={2} alignItems="center" justifyContent="center">
     <Text p={2}>Burns</Text>
     <ChevronRight />
     <NavLink to="/">

@@ -8,3 +8,7 @@ html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, arial, sans-serif;
 }
+
+a {
+  text-decoration: none;
+}

@@ -6,7 +6,7 @@ import Header from './Header';
 import Burn from './Burn';
 
 const App = props => (
-  <Flex flexDirection="column">
+  <Flex flexDirection="column" width={800} m="auto">
     <Header />
     <Switch>
       <Route exact path="/" component={Burn} />

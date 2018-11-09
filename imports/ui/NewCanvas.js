@@ -3,6 +3,8 @@ import {Box, Flex, Text, Button} from 'rebass';
 import {Canvases} from '../api/canvases';
 import PropTypes from 'prop-types';
 import Input from './Input';
+import bikeshed from '@jxnblk/bikeshed';
+import hello from 'hello-color';
 
 class NewCanvas extends Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class NewCanvas extends Component {
               createdAt: Date.now(),
               modifiedAt: Date.now(),
               problemStatement: this.state.problemStatement,
+              style: hello(bikeshed()),
             });
           }}>
           Create canvas

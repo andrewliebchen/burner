@@ -1,31 +1,15 @@
 import {Canvases} from '../api/canvases';
 import {createContainer} from 'react-meteor-data';
-import {Flex, Box, Text, Card} from 'rebass';
-import {Link} from 'react-router-dom';
-import {Trash} from 'react-feather';
+import {Flex, Text} from 'rebass';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TimeAgo from 'react-timeago';
-import Block from './Block';
+import CanvasListItem from './CanvasListItem';
 
 const CanvasList = props => (
   <Flex flexDirection="column">
     {props.canvases.length > 0 ? (
       props.canvases.map(canvas => (
-        <Block key={canvas._id}>
-          <Text>
-            <TimeAgo date={canvas.modifiedAt} />
-          </Text>
-          <Link to={`canvases/${canvas._id}`}>
-            <Text>{canvas.problemStatement}</Text>
-          </Link>
-          <Trash
-            onClick={() =>
-              window.confirm('Are you sure you want to delete this canvas?') &&
-              Canvases.remove(canvas._id)
-            }
-          />
-        </Block>
+        <CanvasListItem key={canvas._id} {...canvas} />
       ))
     ) : (
       <Text>No Canvases</Text>

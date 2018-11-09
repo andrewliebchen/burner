@@ -3,7 +3,7 @@ import {Card} from 'rebass';
 import PropTypes from 'prop-types';
 
 const Block = props => (
-  <Card width={1} border={1} p={3} mt={3} {...props}>
+  <Card width={1} p={3} borderRadius={4} mt={2} {...props}>
     {props.children}
   </Card>
 );
