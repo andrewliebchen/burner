@@ -15,7 +15,7 @@ const CanvasListItem = props => (
           <Text color={props.style.color}>
             <TimeAgo date={props.modifiedAt} />
           </Text>
-          <Text fontSize={4} fontWeight="bold" color={props.style.color}>
+          <Text fontSize={4} color={props.style.color}>
             {props.problemStatement}
           </Text>
         </Box>

@@ -20,7 +20,7 @@ class NewCanvas extends Component {
         <Text mb={2}>New Canvas</Text>
         <Box mb={2}>
           <Input
-            label="Problem statemen4t"
+            label="Problem statement"
             autoFocus
             onChange={event =>
               this.setState({problemStatement: event.target.value})
