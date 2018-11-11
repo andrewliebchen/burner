@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import {Text, Flex, Box, Button} from 'rebass';
+import {createContainer} from 'react-meteor-data';
 import {HelpCircle, PlusCircle, MinusCircle} from 'react-feather';
-import PropTypes from 'prop-types';
+import {Impacts} from '../api/impacts';
+import {Text, Flex, Box, Button} from 'rebass';
 import Block from './Block';
 import Input from './Input';
-import {Elements} from '../api/elements';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 
-class Impacts extends Component {
+class ImpactsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,31 +17,30 @@ class Impacts extends Component {
   }
 
   render() {
-    const {elements} = this.props;
-    const impacts = elements.filter(element => element.type === 'impact');
+    const {impacts} = this.props;
 
     return (
       <Block title="Impacts">
         {impacts.length > 0 ? (
-          impacts.map(element => (
-            <Flex key={element._id} alignItems="center" mt={2}>
+          impacts.map(impact => (
+            <Flex key={impact._id} alignItems="center" mt={2}>
               <Flex
                 mr={2}
                 alignItems="center"
                 onClick={() =>
-                  Elements.update(element._id, {
+                  Impacts.update(impact._id, {
                     $set: {
-                      negative: !element.negative,
+                      negative: !impact.negative,
                     },
                   })
                 }>
-                {element.negative ? (
+                {impact.negative ? (
                   <MinusCircle color="red" />
                 ) : (
                   <PlusCircle color="green" />
                 )}
               </Flex>
-              <Text>{element.text}</Text>
+              <Text>{impact.text}</Text>
             </Flex>
           ))
         ) : (
@@ -57,9 +57,8 @@ class Impacts extends Component {
           {this.state.newText.length > 0 && (
             <Button
               onClick={() =>
-                Elements.insert(
+                Impacts.insert(
                   {
-                    type: 'impact',
                     createdAt: Date.now(),
                     modifiedAt: Date.now(),
                     text: this.state.newText,
@@ -78,8 +77,15 @@ class Impacts extends Component {
   }
 }
 
-Impacts.propTypes = {
-  elements: PropTypes.array,
+ImpactsList.propTypes = {
+  impacts: PropTypes.array,
+  canvas: PropTypes.shape({
+    _id: PropTypes.string,
+  }),
 };
 
-export default Impacts;
+export default createContainer(props => {
+  return {
+    impacts: Impacts.find({canvasId: props.canvas._id}).fetch(),
+  };
+}, ImpactsList);

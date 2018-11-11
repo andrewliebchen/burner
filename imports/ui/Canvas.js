@@ -1,11 +1,10 @@
-import React from 'react';
 import {Box, Flex, Text} from 'rebass';
-import {createContainer} from 'react-meteor-data';
 import {Canvases} from '../api/canvases';
-import {Elements} from '../api/elements';
-import PropTypes from 'prop-types';
+import {createContainer} from 'react-meteor-data';
 import Block from './Block';
-import Impacts from './Impacts';
+import ImpactsList from './ImpactsList';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Canvas = props => (
   <div>
@@ -22,7 +21,7 @@ const Canvas = props => (
             </Text>
           </Box>
         </Block>
-        <Impacts {...props} />
+        <ImpactsList {...props} />
         <Block title="Success Measures">These are success measures.</Block>
         <Block title="Scenarios">These are scenarios.</Block>
       </Flex>
@@ -34,6 +33,7 @@ const Canvas = props => (
 
 Canvas.propTypes = {
   canvas: PropTypes.shape({
+    _id: PropTypes.string,
     modifiedAt: PropTypes.number,
     problemStatement: PropTypes.string,
     style: PropTypes.shape({
@@ -41,13 +41,11 @@ Canvas.propTypes = {
       color: PropTypes.string,
     }),
   }),
-  elements: PropTypes.array,
 };
 
 export default createContainer(props => {
   const canvasId = props.match.params.id;
   return {
     canvas: Canvases.findOne(canvasId),
-    elements: Elements.find({canvasId: canvasId}).fetch(),
   };
 }, Canvas);
