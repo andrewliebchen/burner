@@ -5,6 +5,7 @@ import Block from './Block';
 import ImpactsList from './ImpactsList';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Timer from './Timer';
 
 const Canvas = props => (
   <div>
@@ -24,6 +25,7 @@ const Canvas = props => (
         <ImpactsList {...props} />
         <Block title="Success Measures">These are success measures.</Block>
         <Block title="Scenarios">These are scenarios.</Block>
+        <Timer />
       </Flex>
     ) : (
       <div>Loading</div>
