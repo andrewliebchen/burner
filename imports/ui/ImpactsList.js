@@ -1,7 +1,7 @@
 import {createContainer} from 'react-meteor-data';
 import {HelpCircle, PlusCircle, MinusCircle} from 'react-feather';
 import {Impacts} from '../api/impacts';
-import {Text, Flex, Box, Button} from 'rebass';
+import {Text, Flex, Box} from 'rebass';
 import Block from './Block';
 import Input from './Input';
 import PropTypes from 'prop-types';
@@ -51,12 +51,11 @@ class ImpactsList extends Component {
             <HelpCircle />
           </Box>
           <Input
+            placeholder="Add an impact and press Enter..."
             value={this.state.newText}
             onChange={event => this.setState({newText: event.target.value})}
-          />
-          {this.state.newText.length > 0 && (
-            <Button
-              onClick={() =>
+            onKeyPress={event => {
+              if (event.key === 'Enter') {
                 Impacts.insert(
                   {
                     createdAt: Date.now(),
@@ -66,11 +65,10 @@ class ImpactsList extends Component {
                     canvasId: this.props.canvas._id,
                   },
                   (error, success) => success && this.setState({newText: ''}),
-                )
-              }>
-              Add
-            </Button>
-          )}
+                );
+              }
+            }}
+          />
         </Flex>
       </Block>
     );
