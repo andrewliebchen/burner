@@ -35,6 +35,7 @@ class NewCanvas extends Component {
               modifiedAt: Date.now(),
               problemStatement: this.state.problemStatement,
               style: hello(bikeshed()),
+              timerStarted: false,
             });
           }}>
           Create canvas

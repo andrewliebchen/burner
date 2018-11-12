@@ -25,7 +25,10 @@ const Canvas = props => (
         <ImpactsList {...props} />
         <Block title="Success Measures">These are success measures.</Block>
         <Block title="Scenarios">These are scenarios.</Block>
-        <Timer />
+        <Timer
+          canvasId={props.canvas._id}
+          timerStarted={props.canvas.timerStarted}
+        />
       </Flex>
     ) : (
       <div>Loading</div>
@@ -38,6 +41,7 @@ Canvas.propTypes = {
     _id: PropTypes.string,
     modifiedAt: PropTypes.number,
     problemStatement: PropTypes.string,
+    // timerStarted: PropTypes.boolean,
     style: PropTypes.shape({
       base: PropTypes.string,
       color: PropTypes.string,
