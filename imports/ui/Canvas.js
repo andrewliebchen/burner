@@ -6,6 +6,7 @@ import ImpactsList from './ImpactsList';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Timer from './Timer';
+import SuccessMeasuresList from './SuccessMeasuresList';
 
 const Canvas = props => (
   <div>
@@ -23,12 +24,12 @@ const Canvas = props => (
           </Box>
         </Block>
         <ImpactsList {...props} />
-        <Block title="Success Measures">These are success measures.</Block>
+        <SuccessMeasuresList {...props} />
         <Block title="Scenarios">These are scenarios.</Block>
-        <Timer
+        {/* <Timer
           canvasId={props.canvas._id}
           timerStarted={props.canvas.timerStarted}
-        />
+        /> */}
       </Flex>
     ) : (
       <div>Loading</div>
