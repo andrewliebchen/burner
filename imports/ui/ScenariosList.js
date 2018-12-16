@@ -4,6 +4,8 @@ import Block from "./Block";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Text, Flex, Box } from "rebass";
+import Input from "./Input";
+import { HelpCircle } from "react-feather";
 
 class ScenariosList extends Component {
   constructor(props) {
@@ -26,6 +28,29 @@ class ScenariosList extends Component {
         ) : (
           <Text>No Scenarios</Text>
         )}
+        <Flex mt={2} justifyContent="space-between" alignItems="center">
+          <Box mr={2}>
+            <HelpCircle />
+          </Box>
+          <Input
+            placeholder="Add an scenario and press Enter..."
+            value={this.state.newText}
+            onChange={event => this.setState({ newText: event.target.value })}
+            onKeyPress={event => {
+              if (event.key === "Enter") {
+                Scenarios.insert(
+                  {
+                    createdAt: Date.now(),
+                    modifiedAt: Date.now(),
+                    text: this.state.newText,
+                    canvasId: this.props.canvas._id
+                  },
+                  (error, success) => success && this.setState({ newText: "" })
+                );
+              }
+            }}
+          />
+        </Flex>
       </Block>
     );
   }
