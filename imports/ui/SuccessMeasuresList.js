@@ -1,23 +1,23 @@
-import {Box, Flex, Text} from 'rebass';
-import {createContainer} from 'react-meteor-data';
-import {SuccessMeasures} from '../api/successMeasures';
-import {ThumbsUp, ThumbsDown, HelpCircle} from 'react-feather';
-import Block from './Block';
-import Input from './Input';
-import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import { Box, Flex, Text } from "rebass";
+import { createContainer } from "react-meteor-data";
+import { SuccessMeasures } from "../api/successMeasures";
+import { ThumbsUp, ThumbsDown, HelpCircle } from "react-feather";
+import Block from "./Block";
+import Input from "./Input";
+import NewItem from "./NewItem";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 
 class SuccessMeasuresList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newText: '',
-      newTrend: false,
+      newTrend: false
     };
   }
 
   render() {
-    const {successMeasures} = this.props;
+    const { successMeasures, canvas } = this.props;
     return (
       <Block title="Success Measures">
         {successMeasures.length > 0 ? (
@@ -29,10 +29,11 @@ class SuccessMeasuresList extends Component {
                 onClick={() =>
                   SuccessMeasures.update(measure._id, {
                     $set: {
-                      negative: !measure.negative,
-                    },
+                      negative: !measure.negative
+                    }
                   })
-                }>
+                }
+              >
                 {measure.negative ? <ThumbsDown /> : <ThumbsUp />}
               </Flex>
               <Text>{measure.text}</Text>
@@ -41,30 +42,12 @@ class SuccessMeasuresList extends Component {
         ) : (
           <Text>No success measures</Text>
         )}
-        <Flex mt={2} justifyContent="space-between" alignItems="center">
-          <Box mr={2}>
-            <HelpCircle />
-          </Box>
-          <Input
-            placeholder="Add an success measure and press Enter..."
-            value={this.state.newText}
-            onChange={event => this.setState({newText: event.target.value})}
-            onKeyPress={event => {
-              if (event.key === 'Enter') {
-                SuccessMeasures.insert(
-                  {
-                    createdAt: Date.now(),
-                    modifiedAt: Date.now(),
-                    text: this.state.newText,
-                    negative: false,
-                    canvasId: this.props.canvas._id,
-                  },
-                  (error, success) => success && this.setState({newText: ''}),
-                );
-              }
-            }}
-          />
-        </Flex>
+        <NewItem
+          name="success measure"
+          canvasId={canvas._id}
+          collection={SuccessMeasures}
+          options={{ negative: false }}
+        />
       </Block>
     );
   }
@@ -73,12 +56,14 @@ class SuccessMeasuresList extends Component {
 SuccessMeasuresList.propTypes = {
   successMeasures: PropTypes.array,
   canvas: PropTypes.shape({
-    _id: PropTypes.string,
-  }),
+    _id: PropTypes.string
+  })
 };
 
 export default createContainer(props => {
   return {
-    successMeasures: SuccessMeasures.find({canvasId: props.canvas._id}).fetch(),
+    successMeasures: SuccessMeasures.find({
+      canvasId: props.canvas._id
+    }).fetch()
   };
 }, SuccessMeasuresList);
