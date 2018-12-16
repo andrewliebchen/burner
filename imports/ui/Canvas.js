@@ -1,12 +1,13 @@
-import {Box, Flex, Text} from 'rebass';
-import {Canvases} from '../api/canvases';
-import {createContainer} from 'react-meteor-data';
-import Block from './Block';
-import ImpactsList from './ImpactsList';
-import PropTypes from 'prop-types';
-import React from 'react';
-import Timer from './Timer';
-import SuccessMeasuresList from './SuccessMeasuresList';
+import { Box, Flex, Text } from "rebass";
+import { Canvases } from "../api/canvases";
+import { createContainer } from "react-meteor-data";
+import Block from "./Block";
+import ImpactsList from "./ImpactsList";
+import PropTypes from "prop-types";
+import React from "react";
+import ScenariosList from "./ScenariosList";
+import SuccessMeasuresList from "./SuccessMeasuresList";
+import Timer from "./Timer";
 
 const Canvas = props => (
   <div>
@@ -25,7 +26,7 @@ const Canvas = props => (
         </Block>
         <ImpactsList {...props} />
         <SuccessMeasuresList {...props} />
-        <Block title="Scenarios">These are scenarios.</Block>
+        <ScenariosList {...props} />
         {/* <Timer
           canvasId={props.canvas._id}
           timerStarted={props.canvas.timerStarted}
@@ -45,14 +46,14 @@ Canvas.propTypes = {
     // timerStarted: PropTypes.boolean,
     style: PropTypes.shape({
       base: PropTypes.string,
-      color: PropTypes.string,
-    }),
-  }),
+      color: PropTypes.string
+    })
+  })
 };
 
 export default createContainer(props => {
   const canvasId = props.match.params.id;
   return {
-    canvas: Canvases.findOne(canvasId),
+    canvas: Canvases.findOne(canvasId)
   };
 }, Canvas);
