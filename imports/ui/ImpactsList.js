@@ -58,7 +58,7 @@ class ImpactsList extends Component {
         )}
         <NewItem
           name="impact"
-          canvasId={canvas._id}
+          canvas={canvas}
           collection={Impacts}
           options={{ negative: false }}
         />

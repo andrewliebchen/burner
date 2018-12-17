@@ -53,7 +53,7 @@ class SuccessMeasuresList extends Component {
         )}
         <NewItem
           name="success measure"
-          canvasId={canvas._id}
+          canvas={canvas}
           collection={SuccessMeasures}
           options={{ negative: false }}
         />

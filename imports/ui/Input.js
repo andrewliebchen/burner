@@ -12,7 +12,7 @@ const Element = styled.input`
   font-size: 1em;
 
   &:focus {
-    border-color: blue;
+    border-color: ${props => props.color};
     outline: 0;
   }
 `;
@@ -24,8 +24,13 @@ const Input = props => (
   </Flex>
 );
 
+Input.defaultProps = {
+  color: "blue"
+};
+
 Input.propTypes = {
-  label: PropTypes.string
+  label: PropTypes.string,
+  color: PropTypes.string
 };
 
 export default Input;

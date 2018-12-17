@@ -23,6 +23,7 @@ class NewItem extends Component {
           placeholder={`Add a ${this.props.name} and press Enter...`}
           value={this.state.newText}
           onChange={event => this.setState({ newText: event.target.value })}
+          color={this.props.canvas.style.base}
           onKeyPress={event => {
             if (event.key === "Enter") {
               this.props.collection.insert(
@@ -30,7 +31,7 @@ class NewItem extends Component {
                   createdAt: Date.now(),
                   modifiedAt: Date.now(),
                   text: this.state.newText,
-                  canvasId: this.props.canvasId,
+                  canvasId: this.props.canvas._id,
                   ownerId: Meteor.userId(),
                   ...this.props.options
                 },
@@ -46,7 +47,7 @@ class NewItem extends Component {
 }
 
 NewItem.propTypes = {
-  canvasId: PropTypes.string,
+  canvas: PropTypes.object,
   collection: PropTypes.object,
   name: PropTypes.string,
   options: PropTypes.object

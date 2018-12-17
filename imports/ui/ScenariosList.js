@@ -31,11 +31,7 @@ const ScenariosList = props => (
     ) : (
       <Text>No Scenarios</Text>
     )}
-    <NewItem
-      name="scenario"
-      canvasId={props.canvas._id}
-      collection={Scenarios}
-    />
+    <NewItem name="scenario" canvas={props.canvas} collection={Scenarios} />
   </Block>
 );
 
