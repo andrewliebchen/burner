@@ -8,22 +8,13 @@ import React from "react";
 import ScenariosList from "./ScenariosList";
 import SuccessMeasuresList from "./SuccessMeasuresList";
 import Timer from "./Timer";
+import CanvasListItem from "./CanvasListItem";
 
 const Canvas = props => (
   <div>
     {props.canvas ? (
       <Flex flexDirection="column">
-        <Block bg={props.canvas.style.base}>
-          <Box>
-            <Text mb={1} color={props.canvas.style.color} fontWeight="bold">
-              Problem Statement
-            </Text>
-            <Text fontSize={4} color={props.canvas.style.color}>
-              Exercitation incididunt est minim exercitation velit ipsum Lorem
-              mollit qui consectetur quis.
-            </Text>
-          </Box>
-        </Block>
+        <CanvasListItem title="Problem Statement" {...props.canvas} />
         <ImpactsList {...props} />
         <SuccessMeasuresList {...props} />
         <ScenariosList {...props} />
