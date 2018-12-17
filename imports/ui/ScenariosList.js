@@ -1,5 +1,5 @@
 import { createContainer } from "react-meteor-data";
-import { HelpCircle } from "react-feather";
+import { PlayCircle } from "react-feather";
 import { Scenarios } from "../api/scenarios";
 import { Text, Flex, Box } from "rebass";
 import Block from "./Block";
@@ -19,7 +19,12 @@ const ScenariosList = props => (
           justifyContent="space-between"
           mt={2}
         >
-          <Text>{scenario.text}</Text>
+          <Flex alignItems="center">
+            <Flex mr={2} alignItems="center">
+              <PlayCircle />
+            </Flex>
+            <Text>{scenario.text}</Text>
+          </Flex>
           <User id={scenario.ownerId} />
         </Flex>
       ))
