@@ -3,10 +3,11 @@ import { PlayCircle } from "react-feather";
 import { Scenarios } from "../api/scenarios";
 import { Text, Flex, Box } from "rebass";
 import Block from "./Block";
+import DeleteItem from "./DeleteItem";
 import Input from "./Input";
+import NewItem from "./NewItem";
 import PropTypes from "prop-types";
 import React from "react";
-import NewItem from "./NewItem";
 import User from "./User";
 
 const ScenariosList = props => (
@@ -25,7 +26,10 @@ const ScenariosList = props => (
             </Flex>
             <Text>{scenario.text}</Text>
           </Flex>
-          <User id={scenario.ownerId} />
+          <Flex alignItems="center">
+            <DeleteItem id={scenario._id} collection={Scenarios} mr={2} />
+            <User id={scenario.ownerId} />
+          </Flex>
         </Flex>
       ))
     ) : (

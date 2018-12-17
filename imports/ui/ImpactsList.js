@@ -3,6 +3,7 @@ import { HelpCircle, PlusCircle, MinusCircle } from "react-feather";
 import { Impacts } from "../api/impacts";
 import { Text, Flex, Box } from "rebass";
 import Block from "./Block";
+import DeleteItem from "./DeleteItem";
 import Input from "./Input";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
@@ -50,7 +51,10 @@ class ImpactsList extends Component {
                 </Flex>
                 <Text>{impact.text}</Text>
               </Flex>
-              <User id={impact.ownerId} />
+              <Flex alignItems="center">
+                <DeleteItem id={impact._id} collection={Impacts} mr={2} />
+                <User id={impact.ownerId} />
+              </Flex>
             </Flex>
           ))
         ) : (

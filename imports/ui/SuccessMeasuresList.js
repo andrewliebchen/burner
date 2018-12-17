@@ -3,6 +3,7 @@ import { createContainer } from "react-meteor-data";
 import { SuccessMeasures } from "../api/successMeasures";
 import { ThumbsUp, ThumbsDown, HelpCircle } from "react-feather";
 import Block from "./Block";
+import DeleteItem from "./DeleteItem";
 import Input from "./Input";
 import NewItem from "./NewItem";
 import PropTypes from "prop-types";
@@ -45,7 +46,14 @@ class SuccessMeasuresList extends Component {
                 </Flex>
                 <Text>{measure.text}</Text>
               </Flex>
-              <User id={measure.ownerId} />
+              <Flex alignItems="center">
+                <DeleteItem
+                  id={measure._id}
+                  collection={SuccessMeasures}
+                  mr={2}
+                />
+                <User id={measure.ownerId} />
+              </Flex>
             </Flex>
           ))
         ) : (
