@@ -3,6 +3,7 @@ import { Text, Flex, Box } from "rebass";
 import Input from "./Input";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import User from "./User";
 
 class NewItem extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class NewItem extends Component {
                   modifiedAt: Date.now(),
                   text: this.state.newText,
                   canvasId: this.props.canvasId,
+                  ownerId: Meteor.userId(),
                   ...this.props.options
                 },
                 (error, success) => success && this.setState({ newText: "" })
@@ -37,6 +39,7 @@ class NewItem extends Component {
             }
           }}
         />
+        <User id={Meteor.userId()} ml={2} />
       </Flex>
     );
   }

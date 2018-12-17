@@ -7,6 +7,7 @@ import Input from "./Input";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import NewItem from "./NewItem";
+import User from "./User";
 
 class ImpactsList extends Component {
   constructor(props) {
@@ -23,25 +24,33 @@ class ImpactsList extends Component {
       <Block title="Impacts">
         {impacts.length > 0 ? (
           impacts.map(impact => (
-            <Flex key={impact._id} alignItems="center" mt={2}>
-              <Flex
-                mr={2}
-                alignItems="center"
-                onClick={() =>
-                  Impacts.update(impact._id, {
-                    $set: {
-                      negative: !impact.negative
-                    }
-                  })
-                }
-              >
-                {impact.negative ? (
-                  <MinusCircle color="red" />
-                ) : (
-                  <PlusCircle color="green" />
-                )}
+            <Flex
+              key={impact._id}
+              alignItems="center"
+              justifyContent="space-between"
+              mt={2}
+            >
+              <Flex alignItems="center">
+                <Flex
+                  mr={2}
+                  alignItems="center"
+                  onClick={() =>
+                    Impacts.update(impact._id, {
+                      $set: {
+                        negative: !impact.negative
+                      }
+                    })
+                  }
+                >
+                  {impact.negative ? (
+                    <MinusCircle color="red" />
+                  ) : (
+                    <PlusCircle color="green" />
+                  )}
+                </Flex>
+                <Text>{impact.text}</Text>
               </Flex>
-              <Text>{impact.text}</Text>
+              <User id={impact.ownerId} />
             </Flex>
           ))
         ) : (

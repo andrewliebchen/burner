@@ -7,6 +7,7 @@ import Input from "./Input";
 import NewItem from "./NewItem";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import User from "./User";
 
 class SuccessMeasuresList extends Component {
   constructor(props) {
@@ -22,21 +23,29 @@ class SuccessMeasuresList extends Component {
       <Block title="Success Measures">
         {successMeasures.length > 0 ? (
           successMeasures.map(measure => (
-            <Flex key={measure._id} alignItems="center" mt={2}>
-              <Flex
-                mr={2}
-                alignItems="center"
-                onClick={() =>
-                  SuccessMeasures.update(measure._id, {
-                    $set: {
-                      negative: !measure.negative
-                    }
-                  })
-                }
-              >
-                {measure.negative ? <ThumbsDown /> : <ThumbsUp />}
+            <Flex
+              key={measure._id}
+              alignItems="center"
+              justifyContent="space-between"
+              mt={2}
+            >
+              <Flex alignItems="center">
+                <Flex
+                  mr={2}
+                  alignItems="center"
+                  onClick={() =>
+                    SuccessMeasures.update(measure._id, {
+                      $set: {
+                        negative: !measure.negative
+                      }
+                    })
+                  }
+                >
+                  {measure.negative ? <ThumbsDown /> : <ThumbsUp />}
+                </Flex>
+                <Text>{measure.text}</Text>
               </Flex>
-              <Text>{measure.text}</Text>
+              <User id={measure.ownerId} />
             </Flex>
           ))
         ) : (

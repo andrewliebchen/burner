@@ -7,13 +7,20 @@ import Input from "./Input";
 import PropTypes from "prop-types";
 import React from "react";
 import NewItem from "./NewItem";
+import User from "./User";
 
 const ScenariosList = props => (
   <Block title="Scenarios">
     {props.scenarios.length > 0 ? (
       props.scenarios.map(scenario => (
-        <Flex key={scenario._id} alignItems="center" mt={2}>
+        <Flex
+          key={scenario._id}
+          alignItems="center"
+          justifyContent="space-between"
+          mt={2}
+        >
           <Text>{scenario.text}</Text>
+          <User id={scenario.ownerId} />
         </Flex>
       ))
     ) : (
