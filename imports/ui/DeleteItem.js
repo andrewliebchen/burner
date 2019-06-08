@@ -1,7 +1,7 @@
-import React from "react";
 import { Box } from "rebass";
 import { Trash } from "react-feather";
 import PropTypes from "prop-types";
+import React from "react";
 import styled from "styled-components";
 
 const Root = styled(Box)`
