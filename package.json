@@ -14,7 +14,7 @@
     "hello-color": "^1.0.1",
     "hh-mm-ss": "^1.2.0",
     "meteor-node-stubs": "^0.4.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "react-addons-pure-render-mixin": "^15.6.2",
